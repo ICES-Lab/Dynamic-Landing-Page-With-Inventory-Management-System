@@ -1,0 +1,12 @@
+@extends('layouts.main')
+@section('title','Home')
+@push('internalCss')
+<style>
+</style>
+@endpush
+@push('bodycontent')
+@endpush
+@push('javascript')
+<script>
+</script>
+@endpush
