@@ -1,6 +1,7 @@
 @extends('layouts.main')
 @section('title','Home')
 @push('internalCss')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
 </style>
 @endpush
@@ -308,13 +309,13 @@
                         
                         <div class="col-sm-6">
                             <div class="feature">
-                                <i class="icon-Transmition-Tower feature__icon"></i>
+                                <i class="fa fa-wifi feature__icon" style="font-size:3.1rem"></i>
                                 <h4 class="feature__title">Wireless Communication</h4>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="feature">
-                                <i class="icon-Tools feature__icon"></i>
+                                <i class="fa fa-microchip feature__icon" style="font-size:3.1rem"></i>
                                 <h4 class="feature__title">Embedded Systems</h4>
                             </div>
                         </div>
@@ -424,7 +425,7 @@
             <div class="row">
                 <div class="col-sm-3">
                     <a href="#">
-                        <img src="img/partners/11.png" alt="me">
+                        <img src="img/partners/11.png" alt="">
                     </a>
                 </div>
                 <div class="col-sm-3">

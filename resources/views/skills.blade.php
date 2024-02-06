@@ -5,7 +5,7 @@
 </style>
 @endpush
 @push('bodycontent')
-<section class="page-title bg-dark-overlay text-center" style="background-image: url(img/page-title/portfolio.jpg);">
+<section class="page-title bg-dark-overlay text-center" style="background-image: url({{asset('img/page-title/blog.jpg')}});">
     <div class="container">
         <div class="page-title__holder">
             <h1 class="page-title__title">Skill Gallery</h1>

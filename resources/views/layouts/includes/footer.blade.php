@@ -33,6 +33,10 @@
 
                 <div class="col-lg-2 offset-lg-2 col-md-2">
                     <div class="widget">
+                        <span style="font-size:large; color:#868686;" class="nav__phone-text">Call us:</span>
+                        <a href="tel:Contact Number" class="nav__phone-number">Contact Number</a>
+                    </div>
+                    <div class="widget">
                         <p style="font-size:large">Contact Us:</p>
                         <div class="socials">
                             <a href="#" class="social social-email" aria-label="email" title="email" target="_blank"><i class="ui-email"></i></a>
@@ -46,5 +50,11 @@
             </div>
         </div>
     </div> <!-- end container -->
-
+    <div class="footer__bottom">
+        <div class="container-fluid text-right text-md-center">
+            <span class="copyright">
+                &copy; <script>document.querySelector(".copyright").innerHTML += new Date().getFullYear()</script> | Made by <a href="https://www.bitsathy.ac.in/special-labs/intelligent-communication-and-embedded-systems-lab/">ICES</a>
+            </span>
+        </div>
+    </div>
 </footer>
