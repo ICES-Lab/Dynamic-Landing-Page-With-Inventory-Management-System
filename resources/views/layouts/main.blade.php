@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- Mirrored from deothemes.com/envato/sedona/html/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 22 Jan 2024 10:41:36 GMT -->
 <head>
 	<title>@yield('title','Custom Auth laravel')</title>
 
@@ -21,9 +20,6 @@
 
 	<!-- Favicons -->
 	<link rel="shortcut icon" href="img/favicon.ico">
-	<link rel="apple-touch-icon" href="img/apple-touch-icon.html">
-	<link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72x72.png">
-	<link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png">
     @stack('internalCss')
 </head>
 <body>
@@ -36,7 +32,7 @@
 	<main class="main-wrapper">
         @include('layouts.includes.header')
         <div class="content-wrapper content-wrapper--boxed oh">
-        @stack('bodycontent','')
+        @stack('bodycontent')
         @include('layouts.includes.footer')
             <div id="back-to-top">
 				<a href="#top"><i class="ui-arrow-up"></i></a>

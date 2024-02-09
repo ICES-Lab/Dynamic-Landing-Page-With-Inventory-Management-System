@@ -16,10 +16,10 @@
         <!-- <aside class="box-image-sec"> <img src="{{asset('img/portfolio/1.jpg')}}"> </aside> -->
         <div class="page-title__holder">
             <img id="imageInCentre" src="{{asset('img/portfolio/1.jpg')}}">
-            <h1 class="page-title__title">Glass House is big on efficiency, not so big on privacy.</h1>
+            <h1 class="page-title__title">Incharge Name</h1>
             <ul class="entry__meta">
                 <li class="entry__meta-date">
-                    <span>13 June 2018</span>
+                    <span>Incharge detail 1</span>
                 </li>
                 <li class="entry__meta-author">
                     <a href="#">DeoThemes</a>

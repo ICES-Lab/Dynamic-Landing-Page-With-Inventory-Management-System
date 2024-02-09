@@ -37,6 +37,7 @@
 			<section class="section-wrap pt-0 pb-0">
 				<div class="container">
 					<div class="row">
+            <!-- 1 Teacher -->
 						<div class="col-xl-4 col-lg-6">
 							<div class="service-1">
 								<a href="/incharge" class="service-1__url hover-scale">
@@ -61,6 +62,7 @@
 								</div>
 							</div>
 						</div>
+            <!-- end Teacher -->
 					</div>
 				</div>
       </section> <!-- end Teachers -->
