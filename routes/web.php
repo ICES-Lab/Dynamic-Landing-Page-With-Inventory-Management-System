@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ViewController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,24 +14,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {return view('home');});
+Route::get('/', [ViewController::class,'home']);
 
-Route::get('/incharges', function () {return view('faculties');});
+Route::get('/{slug}', [ViewController::class,'main_pages']);
 
-Route::get('/incharge', function () {return view('faculty');});
+// Route::get('/incharges', function () {return view('faculties');});
 
-Route::get('/awards', function () {return view('awards');});
+// Route::get('/incharge', function () {return view('faculty');});
 
-Route::get('/award', function () {return view('single_award');});
+// Route::get('/awards', function () {return view('awards');});
 
-Route::get('/products', function () {return view('products');});
+// Route::get('/award', function () {return view('single_award');});
 
-Route::get('/product', function () {return view('single_product');});
+// Route::get('/products', function () {return view('products');});
 
-Route::get('/skills', function () {return view('skills');});
+// Route::get('/product', function () {return view('single_product');});
 
-Route::get('/skill', function () {return view('single_skill');});
+// Route::get('/skills', function () {return view('skills');});
 
-Route::get('/collaborations', function () {return view('collaborators');});
+// Route::get('/skill', function () {return view('single_skill');});
 
-Route::get('/collaboration', function () {return view('single_collaborator');});
+// Route::get('/collaborations', function () {return view('collaborators');});
+
+// Route::get('/collaboration', function () {return view('single_collaborator');});

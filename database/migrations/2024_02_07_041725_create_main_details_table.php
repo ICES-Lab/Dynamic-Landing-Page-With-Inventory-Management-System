@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('logo', 100);
             $table->string('lab_name', 255);
+            $table->text('link');
             $table->text('mission');
             $table->text('vision');
             $table->text('what_we_do');

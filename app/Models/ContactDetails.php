@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class ContactDetails extends Model
 {
     use HasFactory;
-    protected $fillable = ['contact', 'target', 'icon'];
-    public function icon()
+    protected $fillable = ['contact', 'type', 'target', 'icon'];
+    public function iconcode()
     {
-        return $this->belongsTo(Icons::class);
+        return $this->belongsTo(Icons::class, 'icon');
     }
 }

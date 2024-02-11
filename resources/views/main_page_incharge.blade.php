@@ -1,15 +1,15 @@
 @extends('layouts.main')
-@section('title','Faculties')
+@section('title',$data->name)
 @push('internalCss')
 <style>
 </style>
 @endpush
 @push('bodycontent')
-<section class="page-title bg-dark-overlay text-center" style="background-image: url(img/page-title/about.jpg);">
+<section class="page-title bg-dark-overlay text-center" style="background-image: url({{asset('storage/MainPages/'.$data->page_pic)}})">
         <div class="container">
           <div class="page-title__holder">
-            <h1 class="page-title__title">Laboratory Incharges</h1>
-						<p class="page-title__subtitle">Our Laboratory's Incharges </p>
+            <h1 class="page-title__title">{{$data->content}}</h1>
+						<p class="page-title__subtitle">{{$data->quote}}</p>
           </div>
         </div>
       </section> <!-- end page title -->
@@ -21,11 +21,7 @@
 						<div class="col-lg-10">
 							<div class="intro text-center">
 								<h2 class="mb-32">Our Mission</h2>
-								<p class="lead">To encourage scientific exchanges amongst academia and industry personnel in the field of Wireless Communication and Embedded Systems.
-								To provide research support and consultation for industry and other government organizations. 
-								To use the latest facilities in order to provide technical training programs in the field of Wireless Communication and Embedded Systems.
-								To organize seminars and workshops with an aim to promoting research lifestyle to the student community and enhance the spirit of research by eminent Professors.
-								To motivate and train students to participate in national and international competitions.</p>
+								<p class="lead">{!! $data->mission !!}</p>
 							</div>
 						</div>
 					</div>

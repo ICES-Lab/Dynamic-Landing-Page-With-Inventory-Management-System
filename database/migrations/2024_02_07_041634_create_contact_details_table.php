@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('contact_details', function (Blueprint $table) {
             $table->id();
             $table->text('contact');
+            $table->enum('type', ['tel:', 'mailto:'])->nullable();
             $table->enum('target', ['_blank', '_self']);
             $table->bigInteger('icon')->unsigned();
             $table->timestamps();

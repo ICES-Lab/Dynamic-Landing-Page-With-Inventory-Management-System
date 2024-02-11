@@ -21,4 +21,13 @@ class MainDetails extends Model
         'icon2_name',
         'is_active',
     ];
+    public function iconcode1()
+    {
+        return $this->belongsTo(Icons::class, 'icon1');
+    }
+
+    public function iconcode2()
+    {
+        return $this->belongsTo(Icons::class, 'icon2');
+    }
 }
