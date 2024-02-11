@@ -5,7 +5,7 @@
 
                 <div class="nav__header">
                     <!-- Logo -->
-                    <a href="/" class="logo-container flex-child">
+                    <a href="{{$data->link}}" class="logo-container flex-child">
                         <img class="logo" src="{{asset('storage/Main/'.$data->logo)}}" alt="logo">
                     </a>
 

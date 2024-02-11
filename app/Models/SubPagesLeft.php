@@ -18,6 +18,6 @@ class SubPagesLeft extends Model
     ];
     public function subPage()
     {
-        return $this->belongsTo(SubPages::class, 'sub_page_id');
+        return $this->belongsTo(SubPages::class, 'sub_page_id', 'id');
     }
 }

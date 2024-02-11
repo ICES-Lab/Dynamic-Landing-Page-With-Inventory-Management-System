@@ -21,7 +21,7 @@ class SubPages extends Model
 
     public function mainPage()
     {
-        return $this->belongsTo(MainPages::class);
+        return $this->belongsTo(MainPages::class, 'main_page_id', 'id');
     }
     public function left()
     {

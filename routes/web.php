@@ -18,6 +18,8 @@ Route::get('/', [ViewController::class,'home']);
 
 Route::get('/{slug}', [ViewController::class,'main_pages']);
 
+Route::get('/{main_slug}/{sub_slug}', [ViewController::class, 'sub_pages'])->name('subpage');
+
 // Route::get('/incharges', function () {return view('faculties');});
 
 // Route::get('/incharge', function () {return view('faculty');});

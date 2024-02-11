@@ -6,8 +6,8 @@
                 <div class="col-lg-3 col-md-3">
                     <div class="widget widget-about-us">
                         <!-- Logo -->
-                        <a href="/" class="logo-container flex-child">
-                            <img class="logo" src="img/{{$data->logo}}" alt="logo">
+                        <a href="{{$data->link}}" class="logo-container flex-child">
+                            <img class="logo" src="{{asset('storage/Main/'.$data->logo)}}" alt="logo">
                         </a>
                     </div>
                 </div> <!-- end logo -->
