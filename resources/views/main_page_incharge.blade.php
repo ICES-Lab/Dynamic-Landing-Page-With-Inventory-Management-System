@@ -34,30 +34,32 @@
 				<div class="container">
 					<div class="row">
             <!-- 1 Teacher -->
+            @foreach($incharge as $value)
 						<div class="col-xl-4 col-lg-6">
 							<div class="service-1">
-								<a href="/incharge" class="service-1__url hover-scale">
-									<img src="img/services/v-2/1.jpg" class="service-1__img" alt="">
+								<a href="{{ route('subpage', ['main_slug' => 'incharges', 'sub_slug' => $value->slug]) }}" class="service-1__url hover-scale">
+									<img src="{{asset('storage/Incharges/'.$value->profile_img)}}" class="service-1__img" alt="">
 								</a>								
 								<div class="service-1__info">
-									<h3 class="service-1__title">Faculty Name</h3>
+									<h3 class="service-1__title">{{$value->name}}</h3>
 									<ul class="service-1__features">
 										<li class="service-1__feature">
 											<i class="ui-star service-1__feature-icon"></i>
-											<span class="service-1__feature-text">Faculty Level</span>
+											<span class="service-1__feature-text">{{$value->level}}</span>
 										</li>
 										<li class="service-1__feature">
 											<i class="ui-star service-1__feature-icon"></i>
-											<span class="service-1__feature-text">Faculty Department</span>
+											<span class="service-1__feature-text">{{$value->department}}</span>
 										</li>
 										<li class="service-1__feature">
 											<i class="ui-star service-1__feature-icon"></i>
-											<span class="service-1__feature-text">Faculty Mail</span>
+											<span class="service-1__feature-text">{{$value->email}}</span>
 										</li>
 									</ul>
 								</div>
 							</div>
 						</div>
+            @endforeach
             <!-- end Teacher -->
 					</div>
 				</div>
@@ -101,26 +103,13 @@
 			<div class="partners bg-light text-center">
         <div class="container">
             <div class="row">
+              @foreach($in_foot as $value)
                 <div class="col-sm-3">
-                    <a href="#">
-                        <img src="img/partners/11.png" alt="me">
+                    <a href="{{ route('subpage', ['main_slug' => $value->main, 'sub_slug' => $value->slug]) }}">
+                        <img src="{{asset('storage/SubPages/'.$value->active_img)}}" alt="{{$value->slug}}">
                     </a>
                 </div>
-                <div class="col-sm-3">
-                    <a href="#">
-                        <img src="img/partners/12.png" alt="">
-                    </a>
-                </div>
-                <div class="col-sm-3">
-                    <a href="#">
-                        <img src="img/partners/13.png" alt="">
-                    </a>
-                </div>
-                <div class="col-sm-3">
-                    <a href="#">
-                        <img src="img/partners/14.png" alt="">
-                    </a>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>

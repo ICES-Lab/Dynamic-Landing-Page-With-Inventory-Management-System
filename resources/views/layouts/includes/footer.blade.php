@@ -17,7 +17,7 @@
                     <p style="font-size:large">Our Pages:</p>
                         <ul>
                             @foreach ($footer as $foot)
-                            <li><a href="{{$foot->slug}}">{{$foot->name}}</a></li>
+                            <li><a href="{{ route('mainpage', ['slug' => $foot->slug]) }}">{{$foot->name}}</a></li>
                             @endforeach
                         </ul>
                     </div>

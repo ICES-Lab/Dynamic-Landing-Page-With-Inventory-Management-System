@@ -26,7 +26,7 @@
                         </li>
                         @foreach ($header as $head)
                         <li class="nav__dropdown">
-                            <a href="{{$head->slug}}" aria-haspopup="true">{{$head->name}}</a>
+                            <a href="{{ route('mainpage', ['slug' => $head->slug]) }}" aria-haspopup="true">{{$head->name}}</a>
                         </li>
                         @endforeach
                     </ul> <!-- end menu -->

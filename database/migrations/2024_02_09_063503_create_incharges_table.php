@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text('slug');
             $table->string('department', 255);
             $table->string('level', 127);
-            $table->string('email', 255);
+            $table->string('email', 255)->unique();
             $table->string('profile_img', 100);
             $table->tinyInteger('is_active')->default(1);
             $table->timestamps();

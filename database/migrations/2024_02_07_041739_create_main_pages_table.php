@@ -23,6 +23,9 @@ return new class extends Migration
             $table->tinyInteger('infoot')->default(1);
             $table->tinyInteger('is_active')->default(1);
             $table->tinyInteger('is_layout')->default(1);
+            $table->tinyInteger('in_slider')->default(1);
+            $table->tinyInteger('in_home')->default(1);
+            $table->tinyInteger('in_home_foot')->default(1);
             $table->timestamps();
         });
     }

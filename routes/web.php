@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [ViewController::class,'home']);
 
-Route::get('/{slug}', [ViewController::class,'main_pages']);
+Route::get('/{slug}', [ViewController::class,'main_pages'])->name('mainpage');
 
 Route::get('/{main_slug}/{sub_slug}', [ViewController::class, 'sub_pages'])->name('subpage');
 

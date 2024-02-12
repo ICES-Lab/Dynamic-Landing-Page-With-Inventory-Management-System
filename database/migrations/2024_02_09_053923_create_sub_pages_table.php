@@ -17,8 +17,8 @@ return new class extends Migration
             $table->text('slug');
             $table->unsignedBigInteger('main_page_id');
             $table->string('img1', 100);
-            $table->string('img2', 100);
-            $table->string('img3', 100);
+            $table->string('img2', 100)->nullable();
+            $table->string('img3', 100)->nullable();
             $table->enum('active_img', ['img1', 'img2', 'img3']);
             $table->tinyInteger('is_active')->default(1);
             $table->timestamps();

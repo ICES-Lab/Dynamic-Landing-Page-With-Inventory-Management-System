@@ -12,6 +12,7 @@
         <div class="rev_slider" id="slider-1" data-version="5.0">
             <ul>
                 <!-- SLIDE 1 -->
+                @foreach($slides as $slider)
                 <li data-fstransition="fade"
                     data-transition="fade"
                     data-easein="default"
@@ -19,10 +20,10 @@
                     data-slotamount="1"
                     data-masterspeed="1200"
                     data-delay="8000"
-                    data-title="Modern Living Room"
+                    data-title="{{$slider->name}}"
                     >
                     <!-- MAIN IMAGE -->
-                    <img src="img/revolution/home-1/1.jpg"
+                    <img src="{{asset('storage/SubPages/'.$slider->active_img)}}"
                         alt=""
                         data-bgrepeat="no-repeat"
                         data-bgfit="cover"
@@ -52,7 +53,7 @@
                             "frame":"999",
                             "to":"opacity:0;","ease":"Power3.easeOut"
                         }]'
-                        data-splitout="none">Modern Living Room<span class="hero-dot">.</span>
+                        data-splitout="none">{{$slider->name}}<span class="hero-dot">.</span>
                     </div>
 
                     <!-- HERO SUBTITLE -->
@@ -77,9 +78,10 @@
                             "frame":"999",
                             "to":"opacity:0;","ease":"Power3.easeOut"
                         }]'
-                        >The Sedona Theatre is Ireland's largest fixed-seat theatre.<br>It's located in Grand Canal Square, Dublin.
+                        >{!! $slider->content !!}
                     </div>
-                </li> <!-- end slide 1 -->
+                </li>
+                @endforeach <!-- end slide 1 -->
             </ul>
         </div>
     </div>
@@ -132,71 +134,24 @@
             </div> 
             end filter -->
 
-            <div class="row masonry-grid">           
+            <div class="row masonry-grid">
+                @foreach($in_home as $value)
                 <div class="masonry-item col-lg-4 project hover-trigger residential">
                     <div class="project__container">
                         <div class="project__img-holder">
-                            <a href="portfolio-single.html">
-                                <img src="img/portfolio/masonry/1.jpg" alt="" class="project__img">
+                            <a href="{{ route('subpage', ['main_slug' => $value->main, 'sub_slug' => $value->slug]) }}">
+                                <img src="{{asset('storage/SubPages/'.$value->active_img)}}" alt="{{$value->slug}}" class="project__img">
                                 <div class="hover-overlay">
                                     <div class="project__description">
-                                        <h3 class="project__title">Keangnam Grand Hall</h3>
-                                        <span class="project__date">2018</span>
+                                        <h3 class="project__title">{{$value->name}}</h3>
+                                        <span class="project__date">{{$value->detail}}</span>
                                     </div>
                                 </div>
                             </a>              
                         </div>                  
                     </div> 
-                </div> <!-- end product 1 -->
-
-                <div class="masonry-item col-lg-4 project hover-trigger commercial">
-                    <div class="project__container">
-                        <div class="project__img-holder">
-                            <a href="portfolio-single.html">
-                                <img src="img/portfolio/masonry/2.jpg" alt="" class="project__img">
-                                <div class="hover-overlay">
-                                    <div class="project__description">
-                                        <h3 class="project__title">Green House</h3>
-                                        <span class="project__date">2018</span>
-                                    </div>
-                                </div>
-                            </a>              
-                        </div>                  
-                    </div> 
-                </div> <!-- end product 2 -->
-
-                <div class="masonry-item col-lg-4 project hover-trigger interior">
-                    <div class="project__container">
-                        <div class="project__img-holder">
-                            <a href="portfolio-single.html">
-                                <img src="img/portfolio/masonry/3.jpg" alt="" class="project__img">
-                                <div class="hover-overlay">
-                                    <div class="project__description">
-                                        <h3 class="project__title">Contemporary Villa</h3>
-                                        <span class="project__date">2018</span>
-                                    </div>
-                                </div>
-                            </a>              
-                        </div>                  
-                    </div> 
-                </div> <!-- end product 3 -->
-
-                <div class="masonry-item col-lg-4 project hover-trigger landscape">
-                    <div class="project__container">
-                        <div class="project__img-holder">
-                            <a href="portfolio-single.html">
-                                <img src="img/portfolio/masonry/4.jpg" alt="" class="project__img">
-                                <div class="hover-overlay">
-                                    <div class="project__description">
-                                        <h3 class="project__title">Business Office</h3>
-                                        <span class="project__date">2018</span>
-                                    </div>
-                                </div>
-                            </a>              
-                        </div>                  
-                    </div> 
-                </div> <!-- end product 4 -->
-
+                </div>
+                @endforeach
             </div>
         </div>
     </section> <!-- end products -->
@@ -209,26 +164,13 @@
     <div class="partners bg-light text-center">
         <div class="container">
             <div class="row">
+                @foreach($in_foot as $value)
                 <div class="col-sm-3">
-                    <a href="#">
-                        <img src="img/partners/11.png" alt="">
+                    <a href="{{ route('subpage', ['main_slug' => $value->main, 'sub_slug' => $value->slug]) }}">
+                        <img src="{{asset('storage/SubPages/'.$value->active_img)}}" alt="{{$value->slug}}">
                     </a>
                 </div>
-                <div class="col-sm-3">
-                    <a href="#">
-                        <img src="img/partners/12.png" alt="">
-                    </a>
-                </div>
-                <div class="col-sm-3">
-                    <a href="#">
-                        <img src="img/partners/13.png" alt="">
-                    </a>
-                </div>
-                <div class="col-sm-3">
-                    <a href="#">
-                        <img src="img/partners/14.png" alt="">
-                    </a>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>

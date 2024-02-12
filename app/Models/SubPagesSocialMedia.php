@@ -13,6 +13,10 @@ class SubPagesSocialMedia extends Model
     ];
     public function subPage()
     {
-        return $this->belongsTo(SubPages::class, 'sub_page_id');
+        return $this->belongsTo(SubPages::class, 'sub_page_id', 'id');
+    }
+    public function iconcode()
+    {
+        return $this->belongsTo(Icons::class, 'icon','id');
     }
 }

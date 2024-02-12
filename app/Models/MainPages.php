@@ -18,7 +18,10 @@ class MainPages extends Model
         'inhead',
         'infoot',
         'is_active',
-        'is_layout'
+        'is_layout',
+        'in_slider',
+        'in_home',
+        'in_home_foot'
     ];
     public function subPages()
     {
