@@ -16,7 +16,7 @@ class InchargesMedium extends Model
 
     public function top()
     {
-        return $this->belongsTo(InchargesTop::class, 'top_id');
+        return $this->belongsTo(InchargesTop::class, 'top_id', 'id');
     }
     public function bottom()
     {

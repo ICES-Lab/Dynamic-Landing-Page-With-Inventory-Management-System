@@ -10,6 +10,7 @@ class InchargesSocialMedia extends Model
     use HasFactory;
     protected $fillable = [
         'link',
+        'icon_img',
         'incharge_id',
         'is_active',
     ];

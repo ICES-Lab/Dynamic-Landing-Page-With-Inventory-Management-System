@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('incharges_social_media', function (Blueprint $table) {
             $table->id();
             $table->text('link');
+            $table->text('icon_img');
             $table->unsignedBigInteger('incharge_id');
             $table->tinyInteger('is_active')->default(1);
             $table->timestamps();

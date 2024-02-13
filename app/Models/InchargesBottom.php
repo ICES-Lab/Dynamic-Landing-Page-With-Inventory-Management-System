@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class InchargesBottom extends Model
 {
     use HasFactory;
+    protected $table = 'incharges_bottom';
     protected $fillable = [
         'content',
         'medium_id',
@@ -16,6 +17,6 @@ class InchargesBottom extends Model
 
     public function medium()
     {
-        return $this->belongsTo(InchargesMedium::class, 'medium_id');
+        return $this->belongsTo(InchargesMedium::class, 'medium_id', 'id');
     }
 }

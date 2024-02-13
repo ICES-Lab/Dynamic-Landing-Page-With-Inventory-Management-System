@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\ContactDetails;
 use App\Models\Incharges;
+use App\Models\InchargesBottom;
+use App\Models\InchargesMedium;
+use App\Models\InchargesSocialMedia;
+use App\Models\InchargesTop;
 use App\Models\MainDetails;
 use App\Models\MainPages;
 use App\Models\SubPages;
@@ -127,22 +131,10 @@ class ViewController extends Controller
         }
     }
     public function sub_pages($mainSlug, $subSlug){
+        $check = MainPages::where('is_active','=',1)->where('slug', $mainSlug)->pluck('is_layout')->first();
         $contacts = ContactDetails::select('contact','type','target','icon')->get();
         foreach($contacts as $details){
             $details->icon_code = $details->iconcode->code;
-        }
-        $data = SubPages::select('name','img1','img2','img3')->where('is_active','=',1)->where('slug', $subSlug)->firstOrFail();
-        $left = SubPagesLeft::whereHas('subPage', function ($query) use ($subSlug) {
-            $query->where('slug', $subSlug);
-        })->where('is_active', '=', 1)->select('title','content','img1','img2')->get();
-        $right = SubPagesRight::whereHas('subPage', function ($query) use ($subSlug) {
-            $query->where('slug', $subSlug);
-        })->where('is_active', '=', 1)->select('title','content')->get();
-        $social = SubPagesSocialMedia::whereHas('subPage', function ($query) use ($subSlug) {
-            $query->where('slug', $subSlug);
-        })->where('is_active', '=', 1)->select('icon','target', 'link')->get();
-        foreach($social as $socialmedia){
-            $socialmedia->icon_code = $socialmedia->iconcode->code;
         }
         $footer = MainPages::select('name', 'slug')
                 ->where('is_active', '=', 1)
@@ -152,19 +144,66 @@ class ViewController extends Controller
                 ->where('is_active', '=', 1)
                 ->where('inhead', 1)
                 ->get();
-        $data->link = MainDetails::where('is_active', '=', 1)->latest()->pluck('link')->first();
-        $data->lab_name = MainDetails::where('is_active', '=', 1)->latest()->pluck('lab_name')->first();
-        $data->logo = MainDetails::where('is_active', '=', 1)->latest()->pluck('logo')->first();
-        $data->vision = MainDetails::where('is_active', '=', 1)->latest()->pluck('vision')->first();
-        $viewData = [
-            'data' => $data,
-            'left' => $left,
-            'right' => $right,
-            'social' => $social,
-            'contacts' => $contacts,
-            'footer' => $footer,
-            'header' => $header,
-        ];
-        return view('sub_page',$viewData);
+        if($check==1){
+            $data = SubPages::select('name','img1','img2','img3')->where('is_active','=',1)->where('slug', $subSlug)->firstOrFail();
+            $left = SubPagesLeft::whereHas('subPage', function ($query) use ($subSlug) {
+                $query->where('slug', $subSlug);
+            })->where('is_active', '=', 1)->select('title','content','img1','img2')->get();
+            $right = SubPagesRight::whereHas('subPage', function ($query) use ($subSlug) {
+                $query->where('slug', $subSlug);
+            })->where('is_active', '=', 1)->select('title','content')->get();
+            $social = SubPagesSocialMedia::whereHas('subPage', function ($query) use ($subSlug) {
+                $query->where('slug', $subSlug);
+            })->where('is_active', '=', 1)->select('icon','target', 'link')->get();
+            foreach($social as $socialmedia){
+                $socialmedia->icon_code = $socialmedia->iconcode->code;
+            }
+            $viewData = [
+                'data' => $data,
+                'left' => $left,
+                'right' => $right,
+                'social' => $social,
+                'contacts' => $contacts,
+                'footer' => $footer,
+                'header' => $header,
+            ];
+            $data->link = MainDetails::where('is_active', '=', 1)->latest()->pluck('link')->first();
+            $data->lab_name = MainDetails::where('is_active', '=', 1)->latest()->pluck('lab_name')->first();
+            $data->logo = MainDetails::where('is_active', '=', 1)->latest()->pluck('logo')->first();
+            $data->vision = MainDetails::where('is_active', '=', 1)->latest()->pluck('vision')->first();
+            return view('sub_page',$viewData);
+        }
+        else{
+            $data = Incharges::where('is_active', '=', 1)->where('slug', '=', $subSlug)->select('name','slug','department','level','email','profile_img')->first();
+            $viewData = [
+                'data' => $data,
+                'contacts' => $contacts,
+                'footer' => $footer,
+                'header' => $header,
+            ];
+            $data->social = InchargesSocialMedia::whereHas('incharge', function ($query) use ($data) {
+                $query->where('name', $data->name);
+            })->where('is_active', '=', 1)->select('link','icon_img')->get();
+            $data->top = InchargesTop::whereHas('incharge', function ($query) use ($data) {
+                $query->where('name', $data->name);
+            })->where('is_active', '=', 1)->select('title')->get();
+            foreach($data->top as $top){
+                $top->medium = InchargesMedium::whereHas('top', function ($query) use ($top) {
+                    $query->where('title', $top->title);
+                })->where('is_active', '=', 1)->select('title')->get();
+                foreach($top->medium as $medium){
+                    $medium->bottom = InchargesBottom::whereHas('medium', function ($query) use ($medium) {
+                        $query->where('title', $medium->title);
+                    })->where('is_active', '=', 1)->select('content')->get();
+                }
+            }
+            // dd($data);
+            $data->head_icon_pic = MainPages::where('slug','=',$mainSlug)->pluck('head_icon_pic')->first();
+            $data->link = MainDetails::where('is_active', '=', 1)->latest()->pluck('link')->first();
+            $data->lab_name = MainDetails::where('is_active', '=', 1)->latest()->pluck('lab_name')->first();
+            $data->logo = MainDetails::where('is_active', '=', 1)->latest()->pluck('logo')->first();
+            $data->vision = MainDetails::where('is_active', '=', 1)->latest()->pluck('vision')->first();
+            return view('faculty',$viewData);
+        }
     }
 }

@@ -11,21 +11,20 @@
 @endpush
 @push('bodycontent')
 <!-- Page Title -->
-<section class="page-title page-title--tall blog-featured-img bg-dark-overlay text-center" style="background-image: url(img/blog/background.jpg);">
+<section class="page-title page-title--tall blog-featured-img bg-dark-overlay text-center" style="background-image: url({{asset('storage/Main/background.jpg)')}};">
     <div class="container">
-        <!-- <aside class="box-image-sec"> <img src="{{asset('img/portfolio/1.jpg')}}"> </aside> -->
         <div class="page-title__holder">
-            <img id="imageInCentre" src="{{asset('img/portfolio/1.jpg')}}">
-            <h1 class="page-title__title">Incharge Name</h1>
+            <img id="imageInCentre" src="{{asset('storage/Incharges/'.$data->profile_img)}}">
+            <h1 class="page-title__title">{{$data->name}}</h1>
             <ul class="entry__meta">
                 <li class="entry__meta-date">
-                    <span>Incharge detail 1</span>
+                    <span>{{$data->department}}</span>
                 </li>
                 <li class="entry__meta-author">
-                    <a href="#">DeoThemes</a>
+                    <span>{{$data->department}}</span>
                 </li>
                 <li class="entry__meta-category">
-                    <a href="#">Marketing</a>
+                    <a href="{{'mailto:'.$data->email}}">{{$data->email}}</a>
                 </li>
             </ul>
         </div>
@@ -49,12 +48,11 @@
                                 <div class="entry__share">
                                     <div class="sticky-col">
                                         <div class="socials socials--rounded socials--base">
-                                            <a class="social social-facebook" href="#" title="facebook" target="_blank" aria-label="facebook">
-                                                <i class="ui-facebook"></i>
+                                            @foreach($data->social as $social)
+                                            <a class="social" href="{{$social->link}}" title="facebook" target="_blank" aria-label="facebook">
+                                                <img style="width:35px;" src="{{$social->icon_img}}" alt="">
                                             </a>
-                                            <a class="social social-twitter" href="#" title="twitter" target="_blank" aria-label="twitter">
-                                                <i class="ui-twitter"></i>
-                                            </a>
+                                            @endforeach
                                         </div>
                                     </div>
                                 </div> <!-- end share -->
@@ -62,46 +60,50 @@
                                 <div class="entry__article">
 
                                 <aside class="col-xl-9">
-                                    <div class="Faculty-details-right">
-                                        <div class="Faculty-details-right-box-1 Professional-Experience">
-                                        <div class="row">
-                                            <aside class="col-md-12">
-                                                <div class="box-sec-top">
-                                                <div class="box-sec ">
-                                                    <aside class="">
-                                                    <h3>Professional Experience</h3>
-                                                    </aside>
-                                                </div>
-                                                </div>
-                                            </aside>
-                                            <aside class="col-md-12 box-sec-bottom"> 
-                                                <div class="table-responsive">
-                                                    <table class="table table-responsive table-bordered table-hover">
-                                                        <thead>
-                                                            <tr>
-                                                                <th style="text-align: center;">Experience Type</th>
-                                                                <th style="text-align: center;">Organization</th>
-                                                                <!-- <th style="text-align: center;">Designation</th> -->
-                                                                <th style="text-align: center;">From</th>
-                                                                <th style="text-align: center;">To</th>
-                                                                <th style="text-align: center;">Total Experience</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr role="row" class="odd">
-                                                                <td>Engineering</td>
-                                                                <td>Bannari Amman Institute of Technology, Sathyamangalam</td>
-                                                                <!-- <td>Assistant Professor</td> -->
-                                                                <td class="text-center" id="startdate">22.05.2017</td>
-                                                                <td class="text-center" id="enddate">03.02.2024</td>
-                                                                <td class="text-center" id="exact_age">6 Year(s)  &amp; 8 Month(s) </td>
-                                                            </tr>        
-                                                        </tbody>
-                                                    </table>
-                                                </div> 
-                                            </aside>
-                                        </div>
-                                    </div>
+                                <div class="Faculty-details-right">
+    @foreach($data->top as $top)
+    <div class="Faculty-details-right-box-1 Professional-Experience">
+        <div class="row">
+            <aside class="col-md-12">
+                <div class="box-sec-top">
+                    <div class="box-sec">
+                        <aside class="">
+                            <h3>{{$top->title}}</h3>
+                        </aside>
+                    </div>
+                </div>
+            </aside>
+            <aside class="col-md-12 box-sec-bottom">
+                <div class="table-responsive">
+                    <table class="table table-responsive table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                @foreach($top->medium as $medium)
+                                <th style="text-align: center;">{{$medium->title}}</th>
+                                @endforeach
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($medium->bottom as $bottom)
+                            <tr role="row" class="odd">
+                                @foreach($top->medium as $medium)
+                                <td>
+                                    @foreach($medium->bottom as $bottom)
+                                    {{$bottom->content}}<br>
+                                    @endforeach
+                                </td>
+                                @endforeach
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </aside>
+        </div>
+    </div>
+    @endforeach
+</div>
+
                                 </aside>
                                 </div>
                                 <!-- end entry article -->
