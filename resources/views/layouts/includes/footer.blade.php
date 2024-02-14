@@ -1,4 +1,4 @@
-<footer class="footer bg-dark-overlay" style="background-image: url(img/footer/1.jpg);">
+<footer class="footer bg-dark-overlay" style="background-image: url({{asset('storage/Main/footer.jpg')}});">
     <div class="container-fluid">
         <div class="footer__widgets">
             <div class="row">
@@ -26,7 +26,7 @@
                 <div class="col-lg-2 col-md-3">
                     <div class="widget widget_nav_menu">
                         <p style="font-size:large">Our Vision:</p>
-                            <p>{{$data->vision}}</p>
+                            <p>{{J$data->vision}}</p>
                     </div>
                 </div>
 

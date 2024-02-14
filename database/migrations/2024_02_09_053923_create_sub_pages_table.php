@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('img1', 100);
             $table->string('img2', 100)->nullable();
             $table->string('img3', 100)->nullable();
-            $table->enum('active_img', ['img1', 'img2', 'img3']);
+            $table->string('active_img',100);
             $table->tinyInteger('is_active')->default(1);
             $table->timestamps();
             $table->foreign('main_page_id')->references('id')->on('main_pages')->cascadeOnUpdate()->cascadeOnDelete();

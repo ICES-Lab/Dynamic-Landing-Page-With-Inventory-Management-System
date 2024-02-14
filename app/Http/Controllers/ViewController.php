@@ -44,7 +44,7 @@ class ViewController extends Controller
         foreach($slides as $slide){
         $slide->content = SubPagesRight::whereHas('subPage', function ($query) use ($slide) {
             $query->where('name', $slide->name);
-        })->where('is_active', '=', 1)->latest()->pluck('content')->first();
+        })->where('is_active', '=', 1)->where('in_sub_page', '=', 1)->latest()->pluck('content')->first();
         }
         $in_home = SubPages::whereHas('mainPage', function($query) {
             $query->where('in_home', 1);
@@ -53,7 +53,7 @@ class ViewController extends Controller
         $home->main = MainPages::where('id','=',$home->main_page_id)->pluck('slug')->first();
         $home->detail = SubPagesRight::whereHas('subPage', function ($query) use ($home) {
             $query->where('name', $home->name);
-        })->where('is_active', '=', 1)->latest()->pluck('content')->first();
+        })->where('is_active', '=', 1)->where('in_sub_page', '=', 1)->latest()->pluck('content')->first();
         }
         $in_foot = SubPages::whereHas('mainPage', function($query) {
             $query->where('in_home_foot', 1);
@@ -186,7 +186,7 @@ class ViewController extends Controller
             })->where('is_active', '=', 1)->select('link','icon_img')->get();
             $data->top = InchargesTop::whereHas('incharge', function ($query) use ($data) {
                 $query->where('name', $data->name);
-            })->where('is_active', '=', 1)->select('title')->get();
+            })->where('is_active', '=', 1)->select('id','title')->get();
             foreach($data->top as $top){
                 $top->medium = InchargesMedium::whereHas('top', function ($query) use ($top) {
                     $query->where('title', $top->title);
@@ -194,7 +194,7 @@ class ViewController extends Controller
                 foreach($top->medium as $medium){
                     $medium->bottom = InchargesBottom::whereHas('medium', function ($query) use ($medium) {
                         $query->where('title', $medium->title);
-                    })->where('is_active', '=', 1)->select('content')->get();
+                    })->where('is_active', '=', 1)->select('content','medium_id')->get();
                 }
             }
             // dd($data);
