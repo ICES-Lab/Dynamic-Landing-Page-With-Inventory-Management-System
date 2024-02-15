@@ -26,7 +26,7 @@
                 <div class="col-lg-2 col-md-3">
                     <div class="widget widget_nav_menu">
                         <p style="font-size:large">Our Vision:</p>
-                            <p>{{J$data->vision}}</p>
+                            <p>{{$data->vision}}</p>
                     </div>
                 </div>
 

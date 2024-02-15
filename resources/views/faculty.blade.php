@@ -76,21 +76,13 @@
             <aside class="col-md-12 box-sec-bottom">
                 <div class="table-responsive">
                     <table class="table table-responsive table-bordered table-hover">
-                        <thead>
-                            <tr>
-                                @foreach($top->medium as $medium)
-                                <th style="text-align: center;">{{$medium->title}}</th>
-                                @endforeach
-                            </tr>
-                        </thead>
                         <tbody>
-                            @foreach($medium->bottom as $bottom)
+                            @foreach($top->medium as $medium)
                             <tr role="row" class="odd">
-                                @foreach($top->medium as $medium)
+                            <th style="text-align: center;">{{$medium->title}}</th>
+                            @foreach($medium->bottom as $bottom)
                                 <td>
-                                    @foreach($medium->bottom as $bottom)
-                                    {{$bottom->content}}<br>
-                                    @endforeach
+                                    {{$bottom->content}}
                                 </td>
                                 @endforeach
                             </tr>
