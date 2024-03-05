@@ -17,6 +17,9 @@ class Incharges extends Model
         'profile_img',
         'is_active',
     ];
+    protected $casts = [
+        'is_active' => 'boolean',
+    ];
     public function top()
     {
         return $this->hasMany(InchargesTop::class);

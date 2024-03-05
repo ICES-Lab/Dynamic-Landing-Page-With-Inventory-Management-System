@@ -24,7 +24,7 @@ return new class extends Migration
             $table->unsignedBigInteger('icon2')->nullable();
             $table->string('icon1_name', 50);
             $table->string('icon2_name', 50);
-            $table->tinyInteger('is_active')->default(1);
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
             $table->foreign('icon1')->references('id')->on('icons')->cascadeOnUpdate()->nullOnDelete();
             $table->foreign('icon2')->references('id')->on('icons')->cascadeOnUpdate()->nullOnDelete();

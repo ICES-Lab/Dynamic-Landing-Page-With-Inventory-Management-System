@@ -16,6 +16,9 @@ class SubPagesLeft extends Model
         'sub_page_id',
         'is_active',
     ];
+    protected $casts = [
+        'is_active' => 'boolean',
+    ];
     public function subPage()
     {
         return $this->belongsTo(SubPages::class, 'sub_page_id', 'id');

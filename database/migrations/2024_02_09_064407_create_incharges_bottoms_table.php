@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->text('content');
             $table->unsignedBigInteger('medium_id');
-            $table->tinyInteger('is_active')->default(1);
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
             $table->foreign('medium_id')->references('id')->on('incharges_media')->cascadeOnDelete()->cascadeOnUpdate();
         });

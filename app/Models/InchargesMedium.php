@@ -13,7 +13,9 @@ class InchargesMedium extends Model
         'top_id',
         'is_active',
     ];
-
+    protected $casts = [
+        'is_active' => 'boolean',
+    ];
     public function top()
     {
         return $this->belongsTo(InchargesTop::class, 'top_id', 'id');

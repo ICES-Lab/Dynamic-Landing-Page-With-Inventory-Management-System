@@ -7,7 +7,7 @@
                     <div class="widget widget-about-us">
                         <!-- Logo -->
                         <a href="{{$data->link}}" class="logo-container flex-child">
-                            <img class="logo" src="{{asset('storage/Main/'.$data->logo)}}" alt="logo">
+                            <img class="logo" src="{{asset('storage/'.$data->logo)}}" alt="logo">
                         </a>
                     </div>
                 </div> <!-- end logo -->

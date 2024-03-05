@@ -16,8 +16,8 @@ return new class extends Migration
             $table->text('title');
             $table->text('content');
             $table->unsignedBigInteger('sub_page_id');
-            $table->tinyInteger('in_sub_page')->default(0);
-            $table->tinyInteger('is_active')->default(1);
+            $table->boolean('in_sub_page')->default(false);
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
             $table->foreign('sub_page_id')->references('id')->on('sub_pages')->cascadeOnDelete()->cascadeOnUpdate();
         });

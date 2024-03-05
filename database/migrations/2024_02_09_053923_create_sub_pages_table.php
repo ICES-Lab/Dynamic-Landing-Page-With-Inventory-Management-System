@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('img2', 100)->nullable();
             $table->string('img3', 100)->nullable();
             $table->string('active_img',100);
-            $table->tinyInteger('is_active')->default(1);
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
             $table->foreign('main_page_id')->references('id')->on('main_pages')->cascadeOnUpdate()->cascadeOnDelete();
         });

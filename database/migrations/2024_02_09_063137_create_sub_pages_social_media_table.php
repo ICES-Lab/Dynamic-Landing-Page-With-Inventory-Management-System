@@ -17,7 +17,7 @@ return new class extends Migration
             $table->enum('target', ['_blank', '_self']);
             $table->text('link');
             $table->unsignedBigInteger('sub_page_id');
-            $table->tinyInteger('is_active')->default(1);
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
             $table->foreign('sub_page_id')->references('id')->on('sub_pages')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreign('icon')->references('id')->on('icons')->cascadeOnDelete()->cascadeOnUpdate();

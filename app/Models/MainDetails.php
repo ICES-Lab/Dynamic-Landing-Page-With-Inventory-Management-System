@@ -21,6 +21,9 @@ class MainDetails extends Model
         'icon2_name',
         'is_active',
     ];
+    protected $casts = [
+        'is_active' => 'boolean',
+    ];
     public function iconcode1()
     {
         return $this->belongsTo(Icons::class, 'icon1');

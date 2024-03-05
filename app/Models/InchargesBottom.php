@@ -14,7 +14,9 @@ class InchargesBottom extends Model
         'medium_id',
         'is_active',
     ];
-
+    protected $casts = [
+        'is_active' => 'boolean',
+    ];
     public function medium()
     {
         return $this->belongsTo(InchargesMedium::class, 'medium_id', 'id');

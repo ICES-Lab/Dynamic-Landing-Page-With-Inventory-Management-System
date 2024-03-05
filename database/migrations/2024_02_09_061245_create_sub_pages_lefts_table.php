@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('img1', 100)->nullable();
             $table->string('img2', 100)->nullable();
             $table->unsignedBigInteger('sub_page_id');
-            $table->tinyInteger('is_active')->default(1);
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
             $table->foreign('sub_page_id')->references('id')->on('sub_pages')->cascadeOnDelete()->cascadeOnUpdate();
         });

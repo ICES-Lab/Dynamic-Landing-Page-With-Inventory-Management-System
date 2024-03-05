@@ -110,7 +110,7 @@
                     </div>
                 </div>
                 <div class="col-lg-5">
-                    <img src="{{asset('storage/Main/'.$data->what_we_do_pic)}}" class="img-full-width" alt="">
+                    <img src="{{asset('storage/'.$data->what_we_do_pic)}}" class="img-full-width" alt="">
                 </div>
             </div>
         </div>

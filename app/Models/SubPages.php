@@ -18,7 +18,9 @@ class SubPages extends Model
         'active_img',
         'is_active',
     ];
-
+    protected $casts = [
+        'is_active' => 'boolean',
+    ];
     public function mainPage()
     {
         return $this->belongsTo(MainPages::class, 'main_page_id', 'id');

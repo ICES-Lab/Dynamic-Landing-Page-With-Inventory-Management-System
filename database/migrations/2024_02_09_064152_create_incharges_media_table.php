@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->text('title');
             $table->unsignedBigInteger('top_id');
-            $table->tinyInteger('is_active')->default(1);
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
             $table->foreign('top_id')->references('id')->on('incharges_tops')->cascadeOnDelete()->cascadeOnUpdate();
         });

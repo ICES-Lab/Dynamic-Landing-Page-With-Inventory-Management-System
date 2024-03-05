@@ -23,6 +23,15 @@ class MainPages extends Model
         'in_home',
         'in_home_foot'
     ];
+    protected $casts = [
+        'inhead' => 'boolean',
+        'infoot' => 'boolean',
+        'is_layout' => 'boolean',
+        'in_slider' => 'boolean',
+        'in_home' => 'boolean',
+        'in_home_foot' => 'boolean',
+        'is_active' => 'boolean',
+    ];
     public function subPages()
     {
         return $this->hasMany(SubPages::class);

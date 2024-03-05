@@ -19,13 +19,13 @@ return new class extends Migration
             $table->text('content');
             $table->text('quote')->nullable();
             $table->string('page_pic', 100);
-            $table->tinyInteger('inhead')->default(1);
-            $table->tinyInteger('infoot')->default(1);
-            $table->tinyInteger('is_active')->default(1);
-            $table->tinyInteger('is_layout')->default(1);
-            $table->tinyInteger('in_slider')->default(1);
-            $table->tinyInteger('in_home')->default(1);
-            $table->tinyInteger('in_home_foot')->default(1);
+            $table->boolean('inhead')->default(true);
+            $table->boolean('infoot')->default(true);
+            $table->boolean('is_active')->default(true);
+            $table->boolean('is_layout')->default(true);
+            $table->boolean('in_slider')->default(true);
+            $table->boolean('in_home')->default(true);
+            $table->boolean('in_home_foot')->default(true);
             $table->timestamps();
         });
     }

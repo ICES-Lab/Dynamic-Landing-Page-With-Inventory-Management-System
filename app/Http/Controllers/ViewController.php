@@ -46,8 +46,8 @@ class ViewController extends Controller
             $query->where('name', $slide->name);
         })->where('is_active', '=', 1)->where('in_sub_page', '=', 1)->latest()->pluck('content')->first();
         }
-        $in_home = SubPages::whereHas('mainPage', function($query) {
-            $query->where('in_home', 1);
+        $in_home = SubPages::where('main_page_id', function($query) {
+            $query->from('main_pages')->where('in_home', 1)->where('is_active', 1)->latest()->limit(1)->select('id');
         })->where('is_active','=',1)->latest()->take(3)->select('name','slug','active_img','main_page_id')->get();
         foreach($in_home as $home){
         $home->main = MainPages::where('id','=',$home->main_page_id)->pluck('slug')->first();
@@ -55,8 +55,8 @@ class ViewController extends Controller
             $query->where('name', $home->name);
         })->where('is_active', '=', 1)->where('in_sub_page', '=', 1)->latest()->pluck('content')->first();
         }
-        $in_foot = SubPages::whereHas('mainPage', function($query) {
-            $query->where('in_home_foot', 1);
+        $in_foot = SubPages::where('main_page_id', function($query) {
+            $query->from('main_pages')->where('in_home_foot', 1)->where('is_active', 1)->latest()->limit(1)->select('id');
         })->where('is_active','=',1)->latest()->take(4)->select('slug','active_img','main_page_id')->get();
         foreach($in_foot as $foot){
             $foot->main = MainPages::where('id','=',$foot->main_page_id)->pluck('slug')->first();

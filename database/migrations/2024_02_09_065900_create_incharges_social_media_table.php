@@ -16,7 +16,7 @@ return new class extends Migration
             $table->text('link');
             $table->text('icon_img');
             $table->unsignedBigInteger('incharge_id');
-            $table->tinyInteger('is_active')->default(1);
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
             $table->foreign('incharge_id')->references('id')->on('incharges')->cascadeOnDelete()->cascadeOnUpdate();
         });
