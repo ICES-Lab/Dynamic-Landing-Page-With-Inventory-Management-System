@@ -6,6 +6,7 @@ use App\Filament\Resources\IconsResource\Pages;
 use App\Filament\Resources\IconsResource\RelationManagers;
 use App\Models\Icons;
 use Filament\Forms;
+use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -18,15 +19,19 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class IconsResource extends Resource
 {
     protected static ?string $model = Icons::class;
-
-    protected static ?string $navigationIcon = 'heroicon-s-information-circle';
+    protected static ?string $navigationIcon = 'heroicon-o-information-circle';
+    protected static ?string $activeNavigationIcon = 'heroicon-s-information-circle';
+    protected static ?string $navigationGroup = 'Administration';
+    protected static ?int $navigationSort = 2;
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
+                Section::make()->schema([
                 TextInput::make('name')->required(),
                 TextInput::make('code')->required(),
+                ])->columns(2),
             ]);
     }
 

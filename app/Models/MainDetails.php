@@ -10,6 +10,7 @@ class MainDetails extends Model
     use HasFactory;
     protected $fillable = [
         'logo',
+        'link',
         'lab_name',
         'mission',
         'vision',

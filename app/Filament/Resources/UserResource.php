@@ -6,13 +6,16 @@ use App\Filament\Resources\UserResource\Pages;
 use App\Filament\Resources\UserResource\RelationManagers;
 use App\Models\User;
 use Filament\Forms;
+use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\CheckboxColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -20,21 +23,23 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class UserResource extends Resource
 {
     protected static ?string $model = User::class;
-
-    protected static ?string $navigationIcon = 'heroicon-s-users';
+    protected static ?string $navigationIcon = 'heroicon-o-users';
+    protected static ?string $activeNavigationIcon = 'heroicon-s-users';
+    protected static ?string $navigationGroup = 'Administration';
+    protected static ?int $navigationSort = 1;
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
+                Section::make()->schema([
                 TextInput::make('name')->required(),
                 TextInput::make('email')->required()->email(),
-                TextInput::make('password')->required()->password()->visibleOn('create'),
-                Select::make('is_admin')->label('Role')->required()
-                    ->options([
-                        '1' => 'Admin',
-                        '0' => 'Student',
-                    ])->hiddenOn('edit')
+                TextInput::make('password')->required()->password()->hiddenOn('view'),
+                Toggle::make('is_admin')->label('Is Admin')
+                ->onColor('primary')
+                ->offColor('warning')->inline(false)
+                ])->columns(4),
             ]);
     }
 
@@ -44,7 +49,8 @@ class UserResource extends Resource
             ->columns([
                 TextColumn::make('id'),
                 TextColumn::make('name'),
-                TextColumn::make('email'),
+                TextColumn::make('email')->wrap(),
+                ToggleColumn::make('is_admin')->label('Is Admin')
             ])
             ->filters([
                 //

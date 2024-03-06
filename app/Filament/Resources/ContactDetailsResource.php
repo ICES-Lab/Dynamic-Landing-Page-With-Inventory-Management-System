@@ -7,6 +7,7 @@ use App\Filament\Resources\ContactDetailsResource\RelationManagers;
 use App\Models\ContactDetails;
 use App\Models\Icons;
 use Filament\Forms;
+use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -22,24 +23,27 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class ContactDetailsResource extends Resource
 {
     protected static ?string $model = ContactDetails::class;
-
-    protected static ?string $navigationIcon = 'heroicon-s-phone';
+    protected static ?string $navigationIcon = 'heroicon-o-phone';
+    protected static ?string $activeNavigationIcon = 'heroicon-s-phone';
+    protected static ?string $navigationGroup = 'Administration';
+    protected static ?int $navigationSort = 3;
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                TextInput::make('contact')->label('Contact Details')->required(),
+                Section::make()->schema([
+                TextInput::make('contact')->label('Contact Detail')->required()->columnspan(2),
                 Select::make('type')->label('Contact Type')
                     ->options([
                         'tel:' => 'Mobile',
                         'mailto:' => 'Email',
-                    ])->native(false),
-                Select::make('target')->label('Contact Target')->required()
+                    ])->required()->native(false),
+                Select::make('target')->label('Contact Target')
                     ->options([
                         '_blank' => 'New Tab',
                         '_self' => 'Same Tab',
-                    ])->native(false),
+                    ])->required()->native(false),
                 Select::make('icon') // Change to 'icon_id' for clarity
                 ->label('Icon')
                 ->relationship('iconcode','name')->searchable()->preload()->native(0)
@@ -47,6 +51,7 @@ class ContactDetailsResource extends Resource
                 ->loadingMessage('Loading Icons...')->noSearchResultsMessage('No Icons found')->searchPrompt('Search icons')
                 ->optionsLimit(250)
                 ->required()
+                ])->columns(3),
             ]);
     }
 
@@ -55,7 +60,7 @@ class ContactDetailsResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('contact')
-                    ->label('Contact Details'),
+                    ->label('Contact Detail')->wrap(),
                 TextColumn::make('type')
                     ->label('Contact Type')
                     ->getStateUsing(function (Model $record) {
