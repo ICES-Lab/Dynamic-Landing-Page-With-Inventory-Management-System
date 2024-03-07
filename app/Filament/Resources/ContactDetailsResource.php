@@ -44,7 +44,7 @@ class ContactDetailsResource extends Resource
                         '_blank' => 'New Tab',
                         '_self' => 'Same Tab',
                     ])->required()->native(false),
-                Select::make('icon') // Change to 'icon_id' for clarity
+                Select::make('icon')
                 ->label('Icon')
                 ->relationship('iconcode','name')->searchable()->preload()->native(0)
                 ->suffixIcon('heroicon-m-information-circle')->suffixIconColor('primary')

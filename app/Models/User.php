@@ -12,7 +12,7 @@ use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
 
 // class User extends Authenticatable implements FilamentUser
-class User extends Authenticatable
+class User extends Authenticatable implements FilamentUser
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -26,6 +26,8 @@ class User extends Authenticatable
         'email',
         'is_admin',
         'password',
+        'theme',
+        'theme_color'
     ];
 
     /**
@@ -47,8 +49,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-    // public function canAccessPanel(Panel $panel): bool
-    // {
-    //     return str_ends_with($this->email, '@ices.com') && $this->hasVerifiedEmail();
-    // }
+    public function canAccessPanel(Panel $panel): bool
+    {
+        return true;
+    }
 }

@@ -7,9 +7,9 @@ use App\Filament\Resources\MainDetailsResource\RelationManagers;
 use App\Models\MainDetails;
 use Filament\Forms;
 use Filament\Forms\Components\Field;
-use Filament\Forms\Components\Fieldset;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\Fieldset;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
@@ -29,9 +29,8 @@ use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 class MainDetailsResource extends Resource
 {
     protected static ?string $model = MainDetails::class;
-
-    protected static ?string $navigationIcon = 'heroicon-o-home-modern';
-    protected static ?string $activeNavigationIcon = 'heroicon-s-home-modern';
+    protected static ?string $navigationIcon = 'heroicon-o-wallet';
+    protected static ?string $activeNavigationIcon = 'heroicon-s-wallet';
     protected static ?string $navigationGroup = 'Customization';
     protected static ?int $navigationSort = 1;
 
@@ -54,7 +53,7 @@ class MainDetailsResource extends Resource
                         '4:1',
                         '1:1',
                     ])
-                    ->openable()
+                    ->openable()->required()
                     ->preserveFilenames(),    
                     // ->getUploadedFileNameForStorageUsing(
                     //     fn (TemporaryUploadedFile $file): string => (string) str($file->getClientOriginalName())
@@ -74,16 +73,16 @@ class MainDetailsResource extends Resource
                         '4:3',
                         '1:1',
                     ])
-                    ->openable()
+                    ->openable()->required()
                     ->preserveFilenames(),
                 ])->collapsed()->columns(2),
+                Fieldset::make()->schema([
+                TextInput::make('lab_name')->label('Lab Name')->columnspan(2)->required(),
+                TextInput::make('link')->label('Lab Link')->columnspan(3)->required(),
+                ])->columns(5),
                 Section::make()->schema([
-                TextInput::make('lab_name')->label('Lab Name'),
-                TextInput::make('link')->label('Lab Link'),
-                ])->columns(2),
-                Section::make()->schema([
-                RichEditor::make('mission')->label('Mission'),
-                RichEditor::make('what_we_do')->label('What We Do'),
+                RichEditor::make('mission')->label('Mission')->required(),
+                RichEditor::make('what_we_do')->label('What We Do')->required(),
                 ])->columns(2),
                 Fieldset::make('Icons')->schema([
                 TextInput::make('icon1_name')->label('Icon 1 Name'),
@@ -104,11 +103,11 @@ class MainDetailsResource extends Resource
                 ->required(),
                 ]),
                 Section::make()->schema([
-                Textarea::make('vision')->label('Vision')->autosize()->columnspan(3),
+                Textarea::make('vision')->label('Vision')->autosize()->required()->columnspan(3)->columns(1),
                 Toggle::make('is_active')->label('Is Active')
                 ->onColor('primary')
-                ->offColor('warning')->inline(false)->default(true)
-                ])->columns(4),
+                ->offColor('warning')->inline(false)->default(true)->required()
+                ])->columns(4)
             ]);
     }
 
@@ -120,7 +119,8 @@ class MainDetailsResource extends Resource
                 TextColumn::make('lab_name')->label('Lab Name')->wrap(),
                 TextColumn::make('link')->label('Lab Link')->wrap(),
                 ToggleColumn::make('is_active')->label('Is Active')
-
+                ->onColor('primary')
+                ->offColor('warning')->inline(false)->default(true)
             ])
             ->filters([
                 //

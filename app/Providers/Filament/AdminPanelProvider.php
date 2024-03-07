@@ -35,10 +35,6 @@ class AdminPanelProvider extends PanelProvider
             ->pages([
                 Pages\Dashboard::class,
             ])
-            ->plugin(
-                ThemesPlugin::make()
-                    ->canViewThemesPage(fn () => auth()->user()?->is_admin)
-            )
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
                 Widgets\AccountWidget::class,
@@ -63,6 +59,10 @@ class AdminPanelProvider extends PanelProvider
             ->authMiddleware([
                 Authenticate::class,
             ])
+            ->plugin(
+                ThemesPlugin::make()
+                    ->canViewThemesPage(fn () => auth()->user()?->is_admin!=0)
+            )
             ->plugin(FilamentProgressbarPlugin::make()->color('#D83CFF'));
     }
 }
