@@ -59,6 +59,8 @@ class ContactDetailsResource extends Resource
     {
         return $table
             ->columns([
+                TextColumn::make('')
+                ->rowIndex(),
                 TextColumn::make('contact')
                     ->label('Contact Detail')->wrap(),
                 TextColumn::make('type')
@@ -70,9 +72,11 @@ class ContactDetailsResource extends Resource
                     ->label('Target')
                     ->getStateUsing(function (Model $record) {
                         return ($record->target === '_blank') ? 'New Tab' : 'Same Tab';
-                    }),
+                    })
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('iconcode.name')
-                    ->label('Icon'),
+                    ->label('Icon')
+                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //
@@ -95,7 +99,10 @@ class ContactDetailsResource extends Resource
             // IconsResource::relation('icon'),
         ];
     }
-
+    public static function canAccess(): bool
+    {
+        return auth()->user()->is_admin!=0;
+    }
     public static function getPages(): array
     {
         return [

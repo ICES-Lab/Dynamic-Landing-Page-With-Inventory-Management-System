@@ -19,7 +19,7 @@
 	<link rel="stylesheet" href="{{asset('css/style.css')}}" />
 
 	<!-- Favicons -->
-	<link rel="shortcut icon" href="{{$data->head_icon_pic ? asset('storage/MainPages/'.$data->head_icon_pic) : asset('storage/Main/favicon.ico')}}">
+	<link rel="shortcut icon" href="{{$data->head_icon_pic ? asset('storage/'.$data->head_icon_pic) : asset('storage/Main/favicon.ico')}}">
     @stack('internalCss')
 </head>
 <body>

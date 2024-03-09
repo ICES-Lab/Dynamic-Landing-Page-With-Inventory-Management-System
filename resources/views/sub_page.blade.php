@@ -6,12 +6,12 @@
 @endpush
 @push('bodycontent')
 <div class="slick-slider slick-single-image">
-    <img src="{{asset('storage/SubPages/'.$data->img1)}}" class="project__featured-img" alt="">
+    <img src="{{asset('storage/'.$data->img1)}}" class="project__featured-img" alt="">
     @if ($data->img2)
-    <img src="{{asset('storage/SubPages/'.$data->img2)}}" class="project__featured-img" alt="">
+    <img src="{{asset('storage/'.$data->img2)}}" class="project__featured-img" alt="">
     @endif
     @if ($data->img3)
-        <img src="{{asset('storage/SubPages/'.$data->img3)}}" class="project__featured-img" alt="">
+        <img src="{{asset('storage/'.$data->img3)}}" class="project__featured-img" alt="">
     @endif
 </div>			
 
@@ -26,7 +26,7 @@
                 @if($leftside->img1)
                     <figure class="gallery-item">
                         <div class="gallery-icon landscape">
-                            <img src="{{asset('storage/SubPagesLeft/'.$leftside->img1)}}" class="attachment-large size-large"
+                            <img src="{{asset('storage/'.$leftside->img1)}}" class="attachment-large size-large"
                             alt="">
                         </div>
                     </figure>
@@ -34,7 +34,7 @@
                 @if($leftside->img2)
                     <figure class="gallery-item">
                         <div class="gallery-icon landscape">
-                            <img src="{{asset('storage/SubPagesLeft/'.$leftside->img2)}}" class="attachment-large size-large"
+                            <img src="{{asset('storage/'.$leftside->img2)}}" class="attachment-large size-large"
                             alt="">
                         </div>
                     </figure>

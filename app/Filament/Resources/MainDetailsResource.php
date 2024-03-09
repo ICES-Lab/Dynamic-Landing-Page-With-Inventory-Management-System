@@ -18,11 +18,13 @@ use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Actions\ActionGroup;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
@@ -44,7 +46,7 @@ class MainDetailsResource extends Resource
                     ->directory('Main')
                     ->imageEditor()
                     ->loadingIndicatorPosition('right')
-                    ->panelAspectRatio('4:1')
+                    ->panelAspectRatio('5:1')
                     ->panelLayout('compact')
                     ->removeUploadedFileButtonPosition('right')
                     ->imageEditorAspectRatios([
@@ -115,20 +117,44 @@ class MainDetailsResource extends Resource
     {
         return $table
             ->columns([
+                TextColumn::make('')
+                ->rowIndex(),
                 ImageColumn::make('logo')->label('Logo'),
                 TextColumn::make('lab_name')->label('Lab Name')->wrap(),
                 TextColumn::make('link')->label('Lab Link')->wrap(),
+                ImageColumn::make('what_we_do_pic')->label('What We Do Pic')
+                ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('icon1_name')
+                    ->label('Icon1 Name')
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('iconcode1.name')
+                    ->label('Icon')
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('icon2_name')
+                    ->label('Icon2 Name')
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('iconcode2.name')
+                    ->label('Icon2')
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('created_at')->label('Created On')->getStateUsing(function (Model $record) {
+                    return ($record->created_at) ? $record->created_at : 'Inserted Manually';
+                })->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('updated_at')->label('Updated On')->getStateUsing(function (Model $record) {
+                    return ($record->updated_at) ? $record->updated_at : 'Updated Manually';
+                })->toggleable(isToggledHiddenByDefault: true),
                 ToggleColumn::make('is_active')->label('Is Active')
-                ->onColor('primary')
-                ->offColor('warning')->inline(false)->default(true)
-            ])
+                    ->onColor('primary')
+                    ->offColor('warning')->inline(false)
+            ])->defaultSort('updated_at','desc')
             ->filters([
                 //
             ])
             ->actions([
+                ActionGroup::make([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make()
+                ])->tooltip('Actions')
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -142,6 +168,10 @@ class MainDetailsResource extends Resource
         return [
             //
         ];
+    }
+    public static function canAccess(): bool
+    {
+        return auth()->user()->is_admin!=0;
     }
 
     public static function getPages(): array

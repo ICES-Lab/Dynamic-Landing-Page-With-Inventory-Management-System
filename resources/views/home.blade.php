@@ -23,7 +23,7 @@
                     data-title="{{$slider->name}}"
                     >
                     <!-- MAIN IMAGE -->
-                    <img src="{{asset('storage/SubPages/'.$slider->active_img)}}"
+                    <img src="{{asset('storage/'.$slider->active_img)}}"
                         alt=""
                         data-bgrepeat="no-repeat"
                         data-bgfit="cover"
@@ -140,11 +140,11 @@
                     <div class="project__container">
                         <div class="project__img-holder">
                             <a href="{{ route('subpage', ['main_slug' => $value->main, 'sub_slug' => $value->slug]) }}">
-                                <img src="{{asset('storage/SubPages/'.$value->active_img)}}" alt="{{$value->slug}}" class="project__img">
+                                <img src="{{asset('storage/'.$value->active_img)}}" alt="{{$value->slug}}" class="project__img">
                                 <div class="hover-overlay">
                                     <div class="project__description">
                                         <h3 class="project__title">{{$value->name}}</h3>
-                                        <span class="project__date">{{$value->detail}}</span>
+                                        <span class="project__date">{!! $value->detail !!}</span>
                                     </div>
                                 </div>
                             </a>              
@@ -167,7 +167,7 @@
                 @foreach($in_foot as $value)
                 <div class="col-sm-3">
                     <a href="{{ route('subpage', ['main_slug' => $value->main, 'sub_slug' => $value->slug]) }}">
-                        <img src="{{asset('storage/SubPages/'.$value->active_img)}}" alt="{{$value->slug}}">
+                        <img src="{{asset('storage/'.$value->active_img)}}" alt="{{$value->slug}}">
                     </a>
                 </div>
                 @endforeach

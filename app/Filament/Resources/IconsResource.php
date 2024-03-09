@@ -39,7 +39,8 @@ class IconsResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('id'),
+                TextColumn::make('')
+                ->rowIndex(),
                 TextColumn::make('name'),
                 TextColumn::make('code')
             ])
@@ -57,7 +58,10 @@ class IconsResource extends Resource
                 ]),
             ]);
     }
-
+    public static function canAccess(): bool
+    {
+        return auth()->user()->is_admin!=0;
+    }
     public static function getRelations(): array
     {
         return [

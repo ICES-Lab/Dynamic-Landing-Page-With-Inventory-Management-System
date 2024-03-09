@@ -5,11 +5,11 @@
 </style>
 @endpush
 @push('bodycontent')
-<section class="page-title bg-dark-overlay text-center" style="background-image: url({{asset('storage/MainPages/'.$data->page_pic)}})">
+<section class="page-title bg-dark-overlay text-center" style="background-image: url({{asset('storage/'.$data->page_pic)}})">
         <div class="container">
           <div class="page-title__holder">
             <h1 class="page-title__title">{{$data->content}}</h1>
-						<p class="page-title__subtitle">{{$data->quote}}</p>
+						<p class="page-title__subtitle">{!! $data->quote !!}</p>
           </div>
         </div>
       </section> <!-- end page title -->
@@ -106,7 +106,7 @@
               @foreach($in_foot as $value)
                 <div class="col-sm-3">
                     <a href="{{ route('subpage', ['main_slug' => $value->main, 'sub_slug' => $value->slug]) }}">
-                        <img src="{{asset('storage/SubPages/'.$value->active_img)}}" alt="{{$value->slug}}">
+                        <img src="{{asset('storage/'.$value->active_img)}}" alt="{{$value->slug}}">
                     </a>
                 </div>
                 @endforeach
