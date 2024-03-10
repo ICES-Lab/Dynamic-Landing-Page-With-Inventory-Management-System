@@ -38,7 +38,7 @@
 						<div class="col-xl-4 col-lg-6">
 							<div class="service-1">
 								<a href="{{ route('subpage', ['main_slug' => 'incharges', 'sub_slug' => $value->slug]) }}" class="service-1__url hover-scale">
-									<img src="{{asset('storage/Incharges/'.$value->profile_img)}}" class="service-1__img" alt="">
+									<img src="{{asset('storage/'.$value->profile_img)}}" class="service-1__img" alt="">
 								</a>								
 								<div class="service-1__info">
 									<h3 class="service-1__title">{{$value->name}}</h3>

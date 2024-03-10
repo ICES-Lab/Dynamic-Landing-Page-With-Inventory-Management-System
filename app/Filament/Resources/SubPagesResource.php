@@ -145,7 +145,7 @@ class SubPagesResource extends Resource
                 })->toggleable(isToggledHiddenByDefault: true),
                 ToggleColumn::make('is_active')->label('Is Active')
                 ->onColor('primary')
-                ->offColor('warning')->inline(false),
+                ->offColor('warning')->inline(false)
             ])
             ->filters([
                 //

@@ -67,6 +67,7 @@ class SubPagesSocialMediaResource extends Resource
             ->columns([
                 TextColumn::make('')
                 ->rowIndex(),
+                TextColumn::make('subPage.name')->label('Sub Page'),
                 TextColumn::make('link')->wrap(),
                 TextColumn::make('target')
                     ->label('Link Target')
@@ -74,7 +75,6 @@ class SubPagesSocialMediaResource extends Resource
                         return ($record->target === '_blank') ? 'New Tab' : 'Same Tab';
                     })
                     ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('subPage.name')->label('Sub Page'),
                 TextColumn::make('iconcode.name')
                     ->label('Icon')
                     ->toggleable(isToggledHiddenByDefault: true),

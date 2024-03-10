@@ -183,7 +183,7 @@ class ViewController extends Controller
             ];
             $data->social = InchargesSocialMedia::whereHas('incharge', function ($query) use ($data) {
                 $query->where('name', $data->name);
-            })->where('is_active', '=', 1)->select('link','icon_img')->get();
+            })->where('is_active', '=', 1)->select('incharge_id','link','icon_img')->get();
             $data->top = InchargesTop::whereHas('incharge', function ($query) use ($data) {
                 $query->where('name', $data->name);
             })->where('is_active', '=', 1)->select('id','title')->get();

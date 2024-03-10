@@ -14,7 +14,7 @@
 <section class="page-title page-title--tall blog-featured-img bg-dark-overlay text-center" style="background-image: url({{asset('storage/Main/background.jpg)')}};">
     <div class="container">
         <div class="page-title__holder">
-            <img id="imageInCentre" src="{{asset('storage/Incharges/'.$data->profile_img)}}">
+            <img id="imageInCentre" src="{{asset('storage/'.$data->profile_img)}}">
             <h1 class="page-title__title">{{$data->name}}</h1>
             <ul class="entry__meta">
                 <li class="entry__meta-date">
@@ -49,8 +49,8 @@
                                     <div class="sticky-col">
                                         <div class="socials socials--rounded socials--base">
                                             @foreach($data->social as $social)
-                                            <a class="social" href="{{$social->link}}" title="facebook" target="_blank" aria-label="facebook">
-                                                <img style="width:35px;" src="{{$social->icon_img}}" alt="">
+                                            <a class="social" href="{{$social->link}}" title="{{$social->incharge->name}}" target="_blank">
+                                                <img style="width:35px;" src="{{asset('storage/'.$social->icon_img)}}" alt="">
                                             </a>
                                             @endforeach
                                         </div>
