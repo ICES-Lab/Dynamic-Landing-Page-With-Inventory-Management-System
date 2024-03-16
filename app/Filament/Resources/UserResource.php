@@ -19,6 +19,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class UserResource extends Resource
@@ -49,7 +50,6 @@ class UserResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('')->rowIndex(),
-                TextColumn::make('id')->toggleable($isToggledHiddenByDefault = true),
                 TextColumn::make('name'),
                 TextColumn::make('email')->wrap(),
                 ToggleColumn::make('is_admin')->label('Is Admin')
