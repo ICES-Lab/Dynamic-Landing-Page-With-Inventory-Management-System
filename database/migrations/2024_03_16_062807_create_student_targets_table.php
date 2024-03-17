@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('student_targets', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('student_id');
+            $table->unsignedBigInteger('student_id')->unique();
             $table->boolean('competition')->default(false);
             $table->boolean('paper_presentation')->default(false);
             $table->boolean('online_course')->default(false);
